@@ -1,0 +1,170 @@
+/*!
+ * Start Bootstrap - Blog Home (https://startbootstrap.com/template-overviews/blog-home)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-blog-home/blob/master/LICENSE)
+ */
+
+body {
+  padding-top: 54px;
+  height:100%
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+    height:100%
+  }
+}
+
+.tag-list li {
+    float: left;
+    margin-right: 10px;
+}
+
+.tag-item {
+    font-size: 0.85rem;
+    padding: .15rem .55rem;
+}
+
+.btn-larger {
+    padding: 0.5rem 4rem
+}
+
+#myFooter {
+    background-color: #343a40;
+    color:white;
+    left:0px;
+    bottom:0px;
+    width:100%;
+}
+
+#myFooter .footer-copyright{
+    background-color:  #343a40;
+    text-align: center;
+}
+
+#myFooter .footer-copyright p{
+    margin:10px;
+    color: #ccc;
+}
+
+#myFooter ul{
+    list-style-type: none;
+    padding-left: 0;
+    line-height: 1.7;
+
+}
+
+#myFooter a{
+    color:#d2d1d1;
+    text-decoration: none;
+}
+
+#myFooter a:hover, #myFooter a:focus{
+    text-decoration: none;
+    color:white;
+}
+
+#myFooter .myCols{
+    text-align: center;
+}
+
+#myFooter .social-networks{
+    text-align: center;
+    padding-top: 10px;
+}
+
+#myFooter .social-networks a{
+    font-size: 32px;
+    margin-right: 5px;
+    margin-left: 5px;
+    color: #f9f9f9;
+    padding: 10px;
+    transition: 0.2s;
+}
+
+#myFooter .social-networks a:hover{
+    text-decoration: none;
+
+}
+
+#myFooter .facebook:hover{
+    color:#0077e2;
+}
+
+#myFooter .google:hover{
+    color:#ef1a1a;
+}
+
+#myFooter .twitter:hover{
+    color: #00aced;
+}
+
+@media screen and (max-width: 767px){
+    #myFooter {
+        text-align: center;
+    }
+}
+
+
+
+/* CSS used for positioning the footers at the bottom of the page. */
+/* You can remove this. */
+
+
+html{
+    height: 100% !important;
+}
+
+body{
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    height: 100%;
+}
+
+.container{
+    flex: 1 0 auto;
+    -webkit-flex: 1 0 auto;
+    min-height:100%;
+    position:relative;
+}
+
+#myFooter{
+    flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+}
+
+.flag-icon {
+  background-size: contain;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  position: relative;
+  display: inline-block;
+  width: 1.33333333em;
+  line-height: 1em;
+  margin-top: 11px;
+}
+
+.flag-icon:before {
+  content: "\00a0";
+}
+
+.flag-icon-br {
+  background-image: url(../images/br.svg);
+  margin-right: 5px;
+}
+
+.flag-icon-us {
+  background-image: url(../images/us.svg);
+  margin-right: 10px;
+}
+
+.invalid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}

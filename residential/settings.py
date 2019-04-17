@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'lot',
     'resident',
     'localflavor',
 ]
@@ -120,8 +121,25 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
+
+LOGIN_URL = '/resident/login/'
+
+LOGOUT_REDIRECT_URL = LOGIN_URL
+
+LOGIN_REDIRECT_URL = '/resident/'
+
+AUTHENTICATION_BACKENDS = [
+    'resident.backends.EmailAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
