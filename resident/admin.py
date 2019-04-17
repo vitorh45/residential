@@ -9,7 +9,7 @@ class HouseResidentInline(admin.TabularInline):
 
 @admin.register(Resident)
 class ResidentAdmin(admin.ModelAdmin):
-    list_display = ('username', 'email', 'lot', 'cpf',)
+    list_display = ('username', 'email', 'lot_block', 'cpf',)
     inlines = [
         HouseResidentInline,
     ]

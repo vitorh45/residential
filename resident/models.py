@@ -1,8 +1,8 @@
-from django.db import models
-from django.contrib.auth.models import AbstractUser
-from localflavor.br.models import BRCPFField, BRPostalCodeField
 from datetime import datetime
-from lot.models import Lot
+
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+from localflavor.br.models import BRCPFField, BRPostalCodeField
 
 
 class HouseResident(models.Model):
@@ -12,14 +12,13 @@ class HouseResident(models.Model):
 
 
 class Resident(AbstractUser):
-
     cpf = BRCPFField('CPF', unique=True)
-    lot = models.ForeignKey(Lot, on_delete=models.CASCADE, blank=True, null=True)
     birth_date = models.DateField('Data de nascimento', default=datetime.now)
-
     rg = models.CharField('RG', max_length=20, blank=True)
 
     # Address
+    lot_block = models.CharField('Block do lote', max_length=20, blank=True, null=True)
+    lot_number = models.IntegerField('Número do lote', blank=True, null=True)
     street = models.CharField('Rua/Av', max_length=250, blank=True)
     number = models.CharField('Número', max_length=10, blank=True)
     cep = BRPostalCodeField('Cep', blank=True)

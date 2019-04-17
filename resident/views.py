@@ -12,7 +12,7 @@ def register(request):
         form.save()
         user = authenticate(request, username=form.cleaned_data['cpf'], password=form.cleaned_data['password1'])
         auth_login(request, user)
-        return redirect('detail')
+        return redirect('edit')
 
     return render(request, 'resident/register.html', {
         'form': form
@@ -24,7 +24,7 @@ def edit(request):
     form = ResidentEditForm(request.POST or None, instance=request.user)
     if form.is_valid():
         form.save()
-        return redirect('detail')
+        return redirect('edit')
 
     return render(request, 'resident/edit.html', {
         'form': form

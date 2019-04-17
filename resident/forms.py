@@ -35,6 +35,8 @@ class ResidentEditForm(forms.ModelForm):
     the user, but replaces the password field with admin's
     password hash display field.
     """
+    birth_date = forms.DateField(label='Data de nascimento', input_formats=['%d/%m/%Y'])
+
     class Meta:
         model = Resident
-        fields = ('email', 'cpf', 'birth_date',)
+        fields = ('email', 'cpf', 'rg', 'birth_date', 'lot_block', 'lot_number', 'street', 'number', 'cep')
