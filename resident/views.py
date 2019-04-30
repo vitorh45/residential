@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ResidentCreationForm, ResidentEditForm
+from .forms import ResidentCreationForm, ResidentEditForm, HouseResidentnFormset, VehicleResidentnFormset
 from django.contrib.auth.decorators import login_required
 from .models import Resident
 from django.contrib.auth import authenticate, login as auth_login
@@ -22,12 +22,18 @@ def register(request):
 def edit(request):
 
     form = ResidentEditForm(request.POST or None, instance=request.user)
-    if form.is_valid():
+    house_formset = HouseResidentnFormset(request.POST or None, instance=request.user)
+    vehicle_formset = VehicleResidentnFormset(request.POST or None, instance=request.user)
+    if form.is_valid() and house_formset.is_valid() and vehicle_formset.is_valid():
         form.save()
+        house_formset.save()
+        vehicle_formset.save()
         return redirect('edit')
 
     return render(request, 'resident/edit.html', {
-        'form': form
+        'form': form,
+        'house_formset': house_formset,
+        'vehicle_formset': vehicle_formset
     })
 
 

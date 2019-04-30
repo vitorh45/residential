@@ -11,6 +11,15 @@ class HouseResident(models.Model):
     resident = models.ForeignKey('Resident', on_delete=models.CASCADE)
 
 
+class VehicleResident(models.Model):
+    model = models.CharField('Modelo', max_length=50, blank=True)
+    brand = models.CharField('Marca', max_length=50, blank=True)
+    color = models.CharField('Cor', max_length=30, blank=True)
+    plate = models.CharField('Placa', max_length=7, blank=True)
+    year = models.IntegerField('Ano de fabricação', blank=True)
+    resident = models.ForeignKey('Resident', on_delete=models.CASCADE)
+
+
 class Resident(AbstractUser):
     cpf = BRCPFField('CPF', unique=True)
     birth_date = models.DateField('Data de nascimento', default=datetime.now)

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-
-from .models import Resident
+from django.forms.models import inlineformset_factory
+from .models import Resident, HouseResident, VehicleResident
 
 
 class ResidentCreationForm(forms.ModelForm):
@@ -40,3 +40,19 @@ class ResidentEditForm(forms.ModelForm):
     class Meta:
         model = Resident
         fields = ('email', 'cpf', 'rg', 'birth_date', 'lot_block', 'lot_number', 'street', 'number', 'cep')
+
+
+class HouseResidentForm(forms.ModelForm):
+    class Meta:
+        model = HouseResident
+        fields = ('name', 'birth_date',)
+
+
+class VehicleResidentForm(forms.ModelForm):
+    class Meta:
+        model = VehicleResident
+        fields = '__all__'
+
+
+HouseResidentnFormset = inlineformset_factory(Resident, HouseResident, form=HouseResidentForm, extra=3)
+VehicleResidentnFormset = inlineformset_factory(Resident, VehicleResident, form=VehicleResidentForm, extra=3)
