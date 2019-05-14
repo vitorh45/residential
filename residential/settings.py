@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'lot',
     'resident',
     'localflavor',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -143,3 +144,5 @@ AUTHENTICATION_BACKENDS = [
     'resident.backends.EmailAuthBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

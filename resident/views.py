@@ -32,8 +32,8 @@ def edit(request):
 
     return render(request, 'resident/edit.html', {
         'form': form,
-        'house_formset': house_formset,
-        'vehicle_formset': vehicle_formset
+        'houses': house_formset,
+        'vehicles': vehicle_formset
     })
 
 

@@ -26,7 +26,7 @@ class Resident(AbstractUser):
     rg = models.CharField('RG', max_length=20, blank=True)
 
     # Address
-    lot_block = models.CharField('Block do lote', max_length=20, blank=True, null=True)
+    lot_block = models.CharField('Bloco do lote', max_length=20, blank=True, null=True)
     lot_number = models.IntegerField('Número do lote', blank=True, null=True)
     street = models.CharField('Rua/Av', max_length=250, blank=True)
     number = models.CharField('Número', max_length=10, blank=True)

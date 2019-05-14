@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% if next %}
     {% if user.is_authenticated %}
@@ -9,106 +10,15 @@
     {% endif %}
 {% endif %}
 
-
-
-
 {% block content %}
-<div class="col-md-8">
+<div class="col-lg-12">
     <h1 class="mt-4">Editar</h1>
     <p class='lead'>Altere seus dados.</p>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
             <div class="well well-sm">
-                <form method='POST' action="{% url 'edit' %}">
-                {% csrf_token %}
-                  <div class="form-group row">
-                    <label for="id_cpf" class="col-md-3 col-form-label">CPF:</label>
-                    <div class="col-md-9">
-                      <input type="text" class="form-control" id="id_cpf" name='cpf' placeholder="CPF" value="{{ form.cpf.value }}">
-                        {% if form.cpf.errors %}
-                        {% for error in form.cpf.errors %}
-                            <div class="invalid-feedback">
-                              {{ error }}
-                            </div>
-                        {% endfor %}
-                        {% endif %}
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="id_cpf" class="col-md-3 col-form-label">RG:</label>
-                    <div class="col-md-9">
-                      <input type="text" class="form-control" id="id_rg" name='rg' placeholder="RG" value="{{ form.rg.value }}">
-                        {% if form.rg.errors %}
-                        {% for error in form.rg.errors %}
-                            <div class="invalid-feedback">
-                              {{ error }}
-                            </div>
-                        {% endfor %}
-                        {% endif %}
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="id_cpf" class="col-md-3 col-form-label">Email:</label>
-                    <div class="col-md-9">
-                      <input type="text" class="form-control" id="id_email" name='email' placeholder="Email" value="{{ form.email.value }}">
-                        {% if form.email.errors %}
-                        {% for error in form.email.errors %}
-                            <div class="invalid-feedback">
-                              {{ error }}
-                            </div>
-                        {% endfor %}
-                        {% endif %}
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="id_birth_date" class="col-md-3 col-form-label">Data de nascimento:</label>
-                    <div class="col-md-9">
-                      <input type="text" class="form-control" id="id_birth_date" name='birth_date' placeholder="Data de nascimento" value="{{ form.birth_date.value|date:'d/m/Y' }}">
-                      {% if form.birth_date.errors %}
-                        {% for error in form.birth_date.errors %}
-                            <div class="invalid-feedback">
-                              {{ error }}
-                            </div>
-                        {% endfor %}
-                        {% endif %}
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="id_cpf" class="col-md-3 col-form-label">Bloco do lote:</label>
-                    <div class="col-md-9">
-                      <input type="text" class="form-control" id="id_lot_block" name='lot_block' placeholder="Bloco do lote" value="{{ form.lot_block.value }}">
-                        {% if form.lot_block.errors %}
-                        {% for error in form.lot_block.errors %}
-                            <div class="invalid-feedback">
-                              {{ error }}
-                            </div>
-                        {% endfor %}
-                        {% endif %}
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="id_cpf" class="col-md-3 col-form-label">Número do lote:</label>
-                    <div class="col-md-9">
-                      <input type="text" class="form-control" id="id_lot_number" name='lot_number' placeholder="Número do lote" value="{{ form.lot_number.value }}">
-                        {% if form.lot_number.errors %}
-                        {% for error in form.lot_number.errors %}
-                            <div class="invalid-feedback">
-                              {{ error }}
-                            </div>
-                        {% endfor %}
-                        {% endif %}
-                    </div>
-                  </div>
-                    {{ house_formset }}
-                    {{ vehicle_formset }}
-                  <div class="form-group row float-right">
-                    <div class="col-sm-10">
-                      <button type="submit" class="btn btn-primary btn-larger">Enviar</button>
-                    </div>
-                  </div>
-                  <input type="hidden" name="next" value="{{ next }}">
-                </form>
+                    {% crispy form  %}
             </div>
         </div>
 

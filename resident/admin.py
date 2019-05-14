@@ -4,12 +4,12 @@ from .models import Resident, HouseResident, VehicleResident
 
 class HouseResidentInline(admin.TabularInline):
     model = HouseResident
-    extra = 3
+    extra = 2
 
 
 class VehicleResidentInline(admin.TabularInline):
     model = VehicleResident
-    extra = 3
+    extra = 2
 
 
 @admin.register(Resident)

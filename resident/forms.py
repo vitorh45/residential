@@ -2,6 +2,10 @@ from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.forms.models import inlineformset_factory
 from .models import Resident, HouseResident, VehicleResident
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, Row, Column, Fieldset
+from .formsets import Formset
+from django.shortcuts import reverse
 
 
 class ResidentCreationForm(forms.ModelForm):
@@ -35,11 +39,55 @@ class ResidentEditForm(forms.ModelForm):
     the user, but replaces the password field with admin's
     password hash display field.
     """
+    email = forms.CharField(label='Email', widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+    cpf = forms.CharField(label='CPF', widget=forms.TextInput(attrs={'readonly': 'readonly'}))
     birth_date = forms.DateField(label='Data de nascimento', input_formats=['%d/%m/%Y'])
 
     class Meta:
         model = Resident
         fields = ('email', 'cpf', 'rg', 'birth_date', 'lot_block', 'lot_number', 'street', 'number', 'cep')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_action = reverse('edit')
+        self.helper.layout = Layout(
+            Row(
+                Column('email', css_class='form-group col-lg-6 mb-0'),
+                Column('cpf', css_class='form-group col-lg-6 mb-0'),
+                css_class='form-row'
+            ),
+            Row(
+                Column('rg', css_class='form-group col-lg-6 mb-0'),
+                Column('birth_date', css_class='form-group col-lg-6 mb-0'),
+                css_class='form-row'
+            ),
+            Row(
+                Column('lot_block', css_class='form-group col-lg-6 mb-0'),
+                Column('lot_number', css_class='form-group col-lg-6 mb-0'),
+                css_class='form-row'
+            ),
+            Row(
+                Column('street', css_class='form-group col-lg-7 mb-0'),
+                Column('number', css_class='form-group col-lg-2 mb-0'),
+                Column('cep', css_class='form-group col-lg-3 mb-0'),
+                css_class='form-row'
+            ),
+            Row(
+                Fieldset('Adicionar moradores',
+                         Formset('houses')),
+                css_class='form-row'
+            ),
+            Row(
+                Fieldset('Adicionar veículos',
+                         Formset('vehicles')),
+                css_class='form-row'
+            ),
+            Row(
+                Submit('submit', 'Send', css_class='btn btn-primary btn-larger'),
+                css_class='float-right form-row'
+            ),
+        )
 
 
 class HouseResidentForm(forms.ModelForm):
@@ -54,5 +102,5 @@ class VehicleResidentForm(forms.ModelForm):
         fields = '__all__'
 
 
-HouseResidentnFormset = inlineformset_factory(Resident, HouseResident, form=HouseResidentForm, extra=3)
-VehicleResidentnFormset = inlineformset_factory(Resident, VehicleResident, form=VehicleResidentForm, extra=3)
+HouseResidentnFormset = inlineformset_factory(Resident, HouseResident, form=HouseResidentForm, extra=2)
+VehicleResidentnFormset = inlineformset_factory(Resident, VehicleResident, form=VehicleResidentForm, extra=2)
