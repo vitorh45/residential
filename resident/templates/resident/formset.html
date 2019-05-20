@@ -1,6 +1,6 @@
 {% load static %}
 {% load crispy_forms_tags %}
-<table>
+<table class="formColumn form-group col-lg-12 mb-0">
 {{ formset.management_form|crispy }}
 
     {% for form in formset.forms %}

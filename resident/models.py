@@ -7,8 +7,11 @@ from localflavor.br.models import BRCPFField, BRPostalCodeField
 
 class HouseResident(models.Model):
     name = models.CharField('Nome do morador', max_length=200, blank=True)
-    birth_date = models.DateField('Data de nascimento', blank=True, default=datetime.now)
+    birth_date = models.DateField('Data de nascimento', blank=True)
     resident = models.ForeignKey('Resident', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 
 class VehicleResident(models.Model):
@@ -18,6 +21,9 @@ class VehicleResident(models.Model):
     plate = models.CharField('Placa', max_length=7, blank=True)
     year = models.IntegerField('Ano de fabricação', blank=True)
     resident = models.ForeignKey('Resident', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.model
 
 
 class Resident(AbstractUser):
@@ -35,3 +41,6 @@ class Resident(AbstractUser):
     class Meta:
         verbose_name = 'Resident'
         verbose_name_plural = 'Residents'
+
+    def __str__(self):
+        return self.get_full_name()

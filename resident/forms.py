@@ -75,16 +75,18 @@ class ResidentEditForm(forms.ModelForm):
             ),
             Row(
                 Fieldset('Adicionar moradores',
-                         Formset('houses')),
+                         Formset('houses'),
+                         css_class='formColumn form-group col-lg-12 mb-0'),
                 css_class='form-row'
             ),
             Row(
                 Fieldset('Adicionar veículos',
-                         Formset('vehicles')),
+                         Formset('vehicles'),
+                         css_class='formColumn form-group col-lg-12 mb-0'),
                 css_class='form-row'
             ),
             Row(
-                Submit('submit', 'Send', css_class='btn btn-primary btn-larger'),
+                Submit('submit', 'Enviar', css_class='btn btn-primary btn-larger'),
                 css_class='float-right form-row'
             ),
         )
