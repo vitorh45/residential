@@ -4,6 +4,13 @@ from django.contrib.auth.decorators import login_required
 from .models import Resident
 from django.contrib.auth import authenticate, login as auth_login
 
+from django.core.files.storage import FileSystemStorage
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+
+
+from weasyprint import HTML
+
 
 def register(request):
 
@@ -43,3 +50,19 @@ def detail(request):
     return render(request, 'resident/detail.html', {
         'resident': resident
     })
+
+
+@login_required
+def export_data(request):
+    resident = get_object_or_404(Resident, cpf=request.user.cpf)
+
+    html_string = render_to_string('resident/resident_data.html', {'resident': resident})
+
+    html = HTML(string=html_string)
+    html.write_pdf(target='/tmp/{}.pdf'.format(resident.cpf))
+
+    fs = FileSystemStorage('/tmp')
+    with fs.open('{}.pdf'.format(resident.cpf)) as pdf:
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="{}.pdf"'.format(resident.cpf)
+        return response
