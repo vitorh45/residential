@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dados exportados</title>
+</head>
+<body>
+
+{{ resident.get_full_name }}<br>
+{{ resident.cpf }}<br>
+{{ resident.rg }}<br>
+{{ resident.email }}<br>
+{{ resident.birth_of_date }}<br><br>
+
+
+Endereço<br>
+{{ resident.lot_block }}<br>
+{{ resident.lot_number }}<br>
+{{ resident.street }}<br>
+{{ resident.number }}<br>
+{{ resident.cep }}<br><br>
+
+Residentes da casa<br>
+{% for house_resident in resident.house_resident.all %}
+    {{ house_resident.name }}<br>
+    {{ house_resident.birth_date }}<br><br>
+{% endfor %}<br>
+
+Veículos da casa<br>
+{% for vehicle in resident.vehicle_resident.all %}
+    {{ vehicle.model }}<br>
+    {{ vehicle.brand }}<br>
+    {{ vehicle.color }}<br>
+    {{ vehicle.plate }}<br>
+    {{ vehicle.year }}<br><br>
+{% endfor %}<br>
+
+
+</body>
+</html>
