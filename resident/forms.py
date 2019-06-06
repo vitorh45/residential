@@ -39,7 +39,6 @@ class ResidentEditForm(forms.ModelForm):
     the user, but replaces the password field with admin's
     password hash display field.
     """
-    email = forms.CharField(label='Email', widget=forms.TextInput(attrs={'readonly': 'readonly'}))
     cpf = forms.CharField(label='CPF', widget=forms.TextInput(attrs={'readonly': 'readonly'}))
     birth_date = forms.DateField(label='Data de nascimento', input_formats=['%d/%m/%Y'])
 
