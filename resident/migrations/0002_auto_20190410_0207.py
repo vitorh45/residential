@@ -4,7 +4,7 @@ import datetime
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
-import localflavor.br.models
+from resident.models import BRPostalCodeField
 
 
 class Migration(migrations.Migration):
@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='resident',
             name='cep',
-            field=localflavor.br.models.BRPostalCodeField(blank=True, max_length=9, verbose_name='Cep'),
+            field=BRPostalCodeField(blank=True, max_length=9, verbose_name='Cep'),
         ),
         migrations.AddField(
             model_name='resident',
