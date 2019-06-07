@@ -1,40 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Dados exportados</title>
+  <title>{{ obj.get_full_name }}</title>
+  <style>
+    body {
+      background-color: #f7f7f7;
+    }
+    p {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+    .text-right {
+      text-align: right;
+    }
+  </style>
 </head>
-<body>
+  <body>
+    <h1 class="text-right">CPF {{ obj.cpf }}</h1>
+    <p><b>Nome completo:</b> {{ obj.get_full_name }}</p>
+    <p><b>RG:</b> {{ obj.rg }}</p>
+    <p><b>Email:</b> {{ obj.email }}</p>
+    <p><b>Data de nascimento:</b> {{ obj.birth_date|date:"d/m/Y" }}</p>
 
-{{ resident.get_full_name }}<br>
-{{ resident.cpf }}<br>
-{{ resident.rg }}<br>
-{{ resident.email }}<br>
-{{ resident.birth_of_date }}<br><br>
+    <h3>Endereço</h3>
+    <p><b>Lote do bloco:</b> {{ obj.lot_block }} / <b>Número do bloco:</b> {{ obj.lot_number }}</p>
+    <p><b>Rua:</b> {{ obj.street }}</p>
+    <p><b>Número:</b> {{ obj.number }} / <b>CEP:</b> {{ obj.cep }}</p>
 
+    <h3>Residentes da casa</h3>
+    {% for house_resident in obj.house_resident.all %}
+    <p><b>Nome completo:</b> {{ house_resident.name }}</p>
+    <p><b>Data de nascimento:</b> {{ house_resident.birth_date|date:"d/m/Y" }}</p>
+    {% endfor %}
 
-Endereço<br>
-{{ resident.lot_block }}<br>
-{{ resident.lot_number }}<br>
-{{ resident.street }}<br>
-{{ resident.number }}<br>
-{{ resident.cep }}<br><br>
+    <h3>Veículos da casa</h3>
+    {% for vehicle in obj.vehicle_resident.all %}
+        <p><b>Modelo:</b> {{ vehicle.model }} / <b>Marca:</b> {{ vehicle.brand }} / <b>Cor:</b> {{ vehicle.color }} /
+        <b>Placa:</b> {{ vehicle.plate }} / <b>Ano:</b> {{ vehicle.year }}</p>
+    {% endfor %}
 
-Residentes da casa<br>
-{% for house_resident in resident.house_resident.all %}
-    {{ house_resident.name }}<br>
-    {{ house_resident.birth_date }}<br><br>
-{% endfor %}<br>
-
-Veículos da casa<br>
-{% for vehicle in resident.vehicle_resident.all %}
-    {{ vehicle.model }}<br>
-    {{ vehicle.brand }}<br>
-    {{ vehicle.color }}<br>
-    {{ vehicle.plate }}<br>
-    {{ vehicle.year }}<br><br>
-{% endfor %}<br>
-
-
-</body>
+  </body>
 </html>

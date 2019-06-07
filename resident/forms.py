@@ -9,6 +9,8 @@ from django.shortcuts import reverse
 
 
 class ResidentCreationForm(forms.ModelForm):
+    birth_date = forms.DateField(label='Data de nascimento', widget=forms.DateInput(format='%m/%d/%Y'),
+                                 input_formats=['%d/%m/%Y'])
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
 

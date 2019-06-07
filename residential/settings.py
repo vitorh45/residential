@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'lot',
     'resident',
     'localflavor',
-    'crispy_forms'
+    'crispy_forms',
+    'django_object_actions',
 ]
 
 MIDDLEWARE = [

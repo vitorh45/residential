@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% if next %}
     {% if user.is_authenticated %}
     <p>Your account doesn't have access to this page. To proceed,
@@ -8,8 +8,6 @@
     <p>Please login to see this page.</p>
     {% endif %}
 {% endif %}
-
-
 
 
 {% block content %}
@@ -25,7 +23,7 @@
                   <div class="form-group row">
                     <label for="id_cpf" class="col-md-3 col-form-label">CPF:</label>
                     <div class="col-md-9">
-                      <input type="text" class="form-control" id="id_cpf" name='cpf' placeholder="CPF">
+                      <input type="text" class="form-control" id="id_cpf" name='cpf' placeholder="CPF" {% if form.cpf.value %}value="{{ form.cpf.value }}"{% endif %}>
                         {% if form.cpf.errors %}
                         {% for error in form.cpf.errors %}
                             <div class="invalid-feedback">
@@ -38,7 +36,7 @@
                   <div class="form-group row">
                     <label for="id_birth_date" class="col-md-3 col-form-label">Data de nascimento:</label>
                     <div class="col-md-9">
-                      <input type="text" class="form-control" id="id_birth_date" name='birth_date' placeholder="Data de nascimento">
+                      <input type="text" class="form-control" id="id_birth_date" name='birth_date' placeholder="Data de nascimento" {% if form.birth_date.value %}value="{{ form.birth_date.value }}"{% endif %}>
                       {% if form.birth_date.errors %}
                         {% for error in form.birth_date.errors %}
                             <div class="invalid-feedback">
@@ -89,3 +87,11 @@
   </div>
 
 {% endblock content %}
+{% block extra-js %}
+<script src="{% static 'js/jquery.mask.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        $('#id_birth_date').mask('00/00/0000');
+    });
+</script>
+{% endblock extra-js %}
