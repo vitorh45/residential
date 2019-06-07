@@ -152,12 +152,10 @@ body{
 }
 
 .flag-icon-br {
-  background-image: url(../images/br.svg);
   margin-right: 5px;
 }
 
 .flag-icon-us {
-  background-image: url(../images/us.svg);
   margin-right: 10px;
 }
 

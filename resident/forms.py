@@ -40,7 +40,8 @@ class ResidentEditForm(forms.ModelForm):
     password hash display field.
     """
     cpf = forms.CharField(label='CPF', widget=forms.TextInput(attrs={'readonly': 'readonly'}))
-    birth_date = forms.DateField(label='Data de nascimento', input_formats=['%d/%m/%Y'])
+    birth_date = forms.DateField(label='Data de nascimento', widget=forms.DateInput(format='%m/%d/%Y'),
+                                 input_formats=['%d/%m/%Y'])
 
     class Meta:
         model = Resident
@@ -92,6 +93,9 @@ class ResidentEditForm(forms.ModelForm):
 
 
 class HouseResidentForm(forms.ModelForm):
+    birth_date = forms.DateField(label='Data de nascimento', widget=forms.DateInput(format='%m/%d/%Y'),
+                                 input_formats=['%d/%m/%Y'])
+
     class Meta:
         model = HouseResident
         fields = ('name', 'birth_date',)
