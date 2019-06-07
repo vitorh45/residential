@@ -15,23 +15,27 @@
   </style>
 </head>
   <body>
-    <h1 class="text-right">CPF {{ obj.cpf }}</h1>
+    <h3>Dados pessoais</h3>
     <p><b>Nome completo:</b> {{ obj.get_full_name }}</p>
+    <p><b>CPF:</b> {{ obj.cpf }}</p>
     <p><b>RG:</b> {{ obj.rg }}</p>
     <p><b>Email:</b> {{ obj.email }}</p>
     <p><b>Data de nascimento:</b> {{ obj.birth_date|date:"d/m/Y" }}</p>
 
+    <br>
     <h3>Endereço</h3>
     <p><b>Lote do bloco:</b> {{ obj.lot_block }} / <b>Número do bloco:</b> {{ obj.lot_number }}</p>
     <p><b>Rua:</b> {{ obj.street }}</p>
     <p><b>Número:</b> {{ obj.number }} / <b>CEP:</b> {{ obj.cep }}</p>
 
+    <br>
     <h3>Residentes da casa</h3>
     {% for house_resident in obj.house_resident.all %}
     <p><b>Nome completo:</b> {{ house_resident.name }}</p>
     <p><b>Data de nascimento:</b> {{ house_resident.birth_date|date:"d/m/Y" }}</p>
     {% endfor %}
 
+    <br>
     <h3>Veículos da casa</h3>
     {% for vehicle in obj.vehicle_resident.all %}
         <p><b>Modelo:</b> {{ vehicle.model }} / <b>Marca:</b> {{ vehicle.brand }} / <b>Cor:</b> {{ vehicle.color }} /

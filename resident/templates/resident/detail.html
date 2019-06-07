@@ -1,12 +1,54 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="col-lg-12">
 
-<br>
-{{ resident.get_full_name }}<br>
-{{ resident.cpf }}<br>
-{{ resident.email }}
+    <div class="single category">
 
-<a href="{% url 'export_data' %}">Exportar dados</a>
+        <h3 class="side-title">Dados Pessoais</h3>
+        <ul class="list-unstyled">
+            <li>Nome: {{ resident.get_full_name }}</li>
+            <li>CPF: {{ resident.cpf }}</li>
+            <li>RG: {{ resident.rg }}</li>
+            <li>Data de nascimento: {{ resident.birth_date|date:"d/m/Y" }}</li>
+        </ul>
+    </div>
 
+    <div class="single category">
+        <h3 class="side-title">Endereço</h3>
+        <ul class="list-unstyled">
+            <li>Bloco do lote: {{ resident.lot_block }}</li>
+            <li>Número do lote: {{ resident.lot_number }}</li>
+            <li>Rua: {{ resident.street }}</li>
+            <li>Número: {{ resident.number }}</li>
+            <li>CEP: {{ resident.cep }}</li>
+        </ul>
+    </div>
+
+    <div class="single category">
+        <h3 class="side-title">Residentes</h3>
+        <ul class="list-unstyled">
+            {% for house_resident in resident.house_resident.all %}
+            <div class="bloco">
+            <li>Nome: {{ house_resident.name }}</li>
+            <li>Data de nascimento: {{ house_resident.birth_date|date:"d/m/Y" }}</li>
+            </div>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="single category">
+        <h3 class="side-title">Veículos</h3>
+        <ul class="list-unstyled">
+            {% for vehicle in resident.vehicle_resident.all %}
+            <div class="bloco">
+            <li><b>Modelo:</b> {{ vehicle.model }} / <b>Marca:</b> {{ vehicle.brand }} / <b>Cor:</b> {{ vehicle.color }} /
+        <b>Placa:</b> {{ vehicle.plate }} / <b>Ano:</b> {{ vehicle.year }}</li>
+            </div>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+</div>
 {% endblock content %}
